@@ -1,4 +1,4 @@
-package com.smmone.smmservice;
+package com.smm;
 
 import com.smm.configuration.AppConfig;
 import com.smm.model.PaymentDetail;
