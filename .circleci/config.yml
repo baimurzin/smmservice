@@ -17,8 +17,9 @@ jobs:
     working_directory: ~/tmp
 
     branches:
-        ignore:
-            - lol
+        only:
+          - master
+          - dev
 
     environment:
       # Customize the JVM maximum heap limit
