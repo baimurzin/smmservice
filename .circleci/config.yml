@@ -16,15 +16,15 @@ jobs:
 
     working_directory: ~/tmp
 
-    branches:
-        only:
-          - master
-          - dev
 
     environment:
       # Customize the JVM maximum heap limit
       MAVEN_OPTS: -Xmx3200m
 
+    branches:
+        only:
+          - master
+          - dev
     steps:
       - checkout
 
@@ -50,3 +50,4 @@ jobs:
 
       - store_artifacts: # store the uberjar as an artifact
           path: target/smmservice-0.0.1-SNAPSHOT.jar
+
