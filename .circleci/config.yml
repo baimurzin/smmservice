@@ -16,6 +16,10 @@ jobs:
 
     working_directory: ~/tmp
 
+    branches:
+        ignore:
+            - lol
+
     environment:
       # Customize the JVM maximum heap limit
       MAVEN_OPTS: -Xmx3200m
