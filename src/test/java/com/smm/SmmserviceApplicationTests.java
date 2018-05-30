@@ -1,9 +1,11 @@
 package com.smm;
 
 import com.smm.configuration.AppConfig;
+import com.smm.model.Order;
 import com.smm.model.PaymentDetail;
 import com.smm.model.PaymentType;
 import com.smm.service.OrderService;
+import com.smm.service.SmmService;
 import com.smm.vendor.payment.PayStrategy;
 import com.smm.vendor.payment.PayStrategyFactory;
 import org.junit.Assert;
@@ -29,6 +31,9 @@ public class SmmserviceApplicationTests {
 	@Autowired
 	private OrderService orderService;
 
+	@Autowired
+	private SmmService smmService;
+
 	@Test
 	public void testPayWithRobokassaPaymentProvider() {
 		PaymentDetail paymentDetail = new PaymentDetail();
@@ -48,6 +53,11 @@ public class SmmserviceApplicationTests {
 		thrown.expect(UnsupportedOperationException.class);
 		PaymentDetail paymentDetail = new PaymentDetail();
 		orderService.checkoutOrder(paymentDetail);
+	}
+
+	@Test
+	public void testSmmLabaAPIProvider() {
+		smmService.addOrder(new Order());
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.smm.service.impl;
 
+import com.smm.model.Order;
+import com.smm.model.OrderDetail;
 import com.smm.model.PaymentDetail;
 import com.smm.service.OrderService;
 import com.smm.vendor.payment.PayStrategy;
@@ -25,5 +27,13 @@ public class OrderServiceImpl implements OrderService {
             throw new UnsupportedOperationException(String.format("Provided payment vendor not supported %s", paymentDetail.getPaymentProvider()), e);
         }
 
+    }
+
+    @Override
+    public Order orderProduct(OrderDetail orderDetail) {
+        // smth like
+        //orderDetail.getProductId()
+        //productFactoryGetProduct(id)
+        return null;
     }
 }

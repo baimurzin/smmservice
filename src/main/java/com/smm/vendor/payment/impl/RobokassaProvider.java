@@ -12,6 +12,6 @@ public class RobokassaProvider implements PayStrategy {
 
     @Override
     public void pay() {
-        LOGGER.info("Paid with " + this.getClass().getName());
+        LOGGER.info("Paid with " + this.getClass().getSimpleName());
     }
 }
