@@ -1,4 +1,6 @@
-package com.smm.model;
+package com.smm.model.other;
+
+import com.smm.model.emun.PaymentType;
 
 public class PaymentDetail {
     private PaymentType paymentProvider;

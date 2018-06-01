@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="
+                       http://www.liquibase.org/xml/ns/dbchangelog
+                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+
+
+
+    <changeSet id="1" author="titov">
+
+        <preConditions onError="MARK_RAN" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="users"/>
+            </not>
+        </preConditions>
+
+        <createTable schemaName="public"
+                     tableName="users">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="role" type="varchar(255)"/>
+            <column name="email" type="varchar(255)"/>
+            <column name="login" type="varchar(255)"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="salt" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="2" author="titov">
+        <preConditions onError="MARK_RAN" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_detail"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="user_detail" schemaName="public">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="refer_code" type="varchar(100)"/>
+            <column name="from" type="varchar(36)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="from"
+                                 baseTableName="user_detail"
+                                 constraintName="user_detail_user_fk"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+    <changeSet id="3" author="titov">
+        <preConditions onError="MARK_RAN" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="service_group"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="service_group" schemaName="public">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="4" author="titov">
+        <preConditions onError="MARK_RAN" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="service"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="service" schemaName="public">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="service_group_id" type="varchar(36)"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="service"
+                                 baseColumnNames="service_group_id"
+                                 constraintName="service_service_group_fk"
+                                 referencedTableName="service_group"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+
+
+    <changeSet id="5" author="titov">
+        <preConditions onError="MARK_RAN" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="service_product"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="service_product" schemaName="public">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="service_id" type="varchar(36)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="service_product" baseColumnNames="service_id"
+                                 constraintName="service_product_service_fk"
+                                 referencedTableName="service"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+
+    <changeSet id="6" author="titov">
+        <preConditions onError="MARK_RAN" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="bonus"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="bonus" schemaName="public">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="service_product_id" type="varchar(36)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="bonus" baseColumnNames="service_product_id"
+                                 constraintName="bonus_service_product_fk"
+                                 referencedTableName="service_product"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+
+    <changeSet id="7" author="titov">
+        <preConditions onError="MARK_RAN" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="orders"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="orders" schemaName="public">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="service_product_id" type="varchar(36)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="orders" baseColumnNames="service_product_id"
+                                 constraintName="orders_service_product_fk"
+                                 referencedTableName="service_product"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+
+    <changeSet id="8" author="titov">
+        <preConditions onError="MARK_RAN" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="transaction"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="transaction" schemaName="public">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="orders_id" type="varchar(36)"/>
+        </createTable>
+
+
+        <addForeignKeyConstraint baseTableName="transaction" baseColumnNames="orders_id"
+                                 constraintName="transaction_orders_fk"
+                                 referencedTableName="orders"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+
+
+    <changeSet id="9" author="titov">
+        <preConditions onError="MARK_RAN" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="payment_vendor"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="payment_vendor" schemaName="public">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="10" author="titov">
+        <preConditions onError="MARK_RAN" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="transaction_payment_vendor"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="transaction_payment_vendor" schemaName="public">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="payment_vendor_id" type="varchar(36)"/>
+            <column name="transaction_id" type="varchar(36)"/>
+        </createTable>
+
+
+        <addForeignKeyConstraint baseTableName="transaction_payment_vendor" baseColumnNames="payment_vendor_id"
+                                 constraintName="transaction_payment_vendor_transaction_fk"
+                                 referencedTableName="transaction"
+                                 referencedColumnNames="id"/>
+
+
+        <addForeignKeyConstraint baseTableName="transaction_payment_vendor" baseColumnNames="transaction_id"
+                                 constraintName="transaction_payment_vendor_payment_vendor_fk"
+                                 referencedTableName="payment_vendor"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+
+</databaseChangeLog>

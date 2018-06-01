@@ -1,7 +1,7 @@
 package com.smm.vendor.smm.impl;
 
-import com.smm.model.APIBalance;
-import com.smm.model.APIOrderStatus;
+import com.smm.model.other.APIBalance;
+import com.smm.model.other.APIOrderStatus;
 import com.smm.model.Order;
 import com.smm.model.Service;
 import com.smm.vendor.smm.SMMAPIStrategy;

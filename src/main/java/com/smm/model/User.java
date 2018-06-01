@@ -1,7 +1,6 @@
 package com.smm.model;
 
-import com.smm.state.OrderCreatedState;
-import com.smm.state.OrderState;
+import com.smm.model.emun.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,17 +8,14 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
-
 
 @Entity
+@Table(name = "users")
 @Data
-@Table(name = "orders")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
-
+public class User {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -28,13 +24,19 @@ public class Order {
     )
     private String id;
 
-    @ManyToOne
-    @JoinColumn(name="service_product_id")
-    private ServiceProduct serviceProduct;
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private RoleType role;
 
-    @OneToMany(mappedBy="order")
-    private List<Transaction> transactions;
+    @Column(name = "email")
+    private String email;
 
-    @Transient
-    private OrderState orderState;
+    @Column(name = "password")
+    private String password;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "from",  cascade = CascadeType.ALL)
+    private UserDetail userDetail;
+
+    @Column(name = "salt")
+    private String salt;
 }

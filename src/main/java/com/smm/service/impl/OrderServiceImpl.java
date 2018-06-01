@@ -1,8 +1,8 @@
 package com.smm.service.impl;
 
 import com.smm.model.Order;
-import com.smm.model.OrderDetail;
-import com.smm.model.PaymentDetail;
+import com.smm.model.other.OrderDetail;
+import com.smm.model.other.PaymentDetail;
 import com.smm.service.OrderService;
 import com.smm.vendor.payment.PayStrategy;
 import com.smm.vendor.payment.PayStrategyFactory;

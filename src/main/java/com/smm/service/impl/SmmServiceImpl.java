@@ -1,9 +1,8 @@
 package com.smm.service.impl;
 
 import com.smm.model.Order;
-import com.smm.model.SMMAPIType;
+import com.smm.model.emun.SMMAPIType;
 import com.smm.service.SmmService;
-import com.smm.vendor.payment.PayStrategy;
 import com.smm.vendor.smm.SMMAPIStrategy;
 import com.smm.vendor.smm.SMMAPIStrategyFactory;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
