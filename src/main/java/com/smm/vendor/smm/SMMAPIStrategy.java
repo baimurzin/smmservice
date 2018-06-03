@@ -6,12 +6,14 @@ import com.smm.model.Order;
 import com.smm.model.Service;
 
 import java.util.List;
+import java.util.Map;
 
-public interface SMMAPIStrategy {
+public interface SMMAPIStrategy<T, V> {
 
-    Order addOrder(Order order);
-    boolean isActive();
-    APIBalance getBalance();
-    APIOrderStatus getOrderStatus(long orderId);
-    List<Service> getServices();
+    T addOrder(Order order);
+    T isActive(Map<String, String> params);
+    T getBalance(Map<String, String> params);
+    T getOrderStatus(long orderId);
+    V getServices();
+    V getService(String name);
 }
