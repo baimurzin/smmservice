@@ -1,15 +1,11 @@
 package com.smm.vendor.smm.impl.smmlaba;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @ToString
 public class APIResponseMessageList<T> {

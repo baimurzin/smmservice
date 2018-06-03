@@ -1,12 +1,10 @@
 package com.smm.vendor.smm.impl.smmlaba.messages;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Getter
-@Setter
+import java.util.List;
+
+@Data
 @NoArgsConstructor
 @ToString
 public class APIMessageServicesPrices {
@@ -14,5 +12,5 @@ public class APIMessageServicesPrices {
     private String param;
     private Integer required;
     private String valid;
-    private String values;
+    private List<String> values;
 }

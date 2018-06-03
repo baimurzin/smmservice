@@ -28,5 +28,8 @@ public interface APIClient {
                                                 @Param("username") String email,
                                                 @Param("service") String service);
 
-
+    @RequestLine("POST /?action=services&apikey={apikey}&username={username}&service={service}")
+    APIResponseMessageList<APIMessageServices> addOrder(@Param("apikey") String apikey,
+                                                           @Param("username") String email,
+                                                           @Param("service") String service);
 }
