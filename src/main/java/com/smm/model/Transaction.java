@@ -1,7 +1,6 @@
 package com.smm.model;
 
-import com.smm.state.OrderCreatedState;
-import com.smm.state.OrderState;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,15 +10,13 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Entity
+@Table(name = "transaction")
 @Data
-@Table(name = "orders")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
-
+public class Transaction {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -29,12 +26,15 @@ public class Order {
     private String id;
 
     @ManyToOne
-    @JoinColumn(name="service_product_id")
-    private ServiceProduct serviceProduct;
+    @JoinColumn(name="orders_id")
+    private Order order;
 
-    @OneToMany(mappedBy="order")
-    private List<Transaction> transactions;
 
-    @Transient
-    private OrderState orderState;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "transaction_payment_vendor",
+            joinColumns = { @JoinColumn(name = "transaction_id") },
+            inverseJoinColumns = { @JoinColumn(name = "payment_vendor_id") }
+    )
+    private List<PaymentVendor> paymentVendors;
 }

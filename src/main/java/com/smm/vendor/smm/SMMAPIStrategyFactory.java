@@ -1,6 +1,6 @@
 package com.smm.vendor.smm;
 
-import com.smm.model.SMMAPIType;
+import com.smm.model.enums.SMMAPIType;
 
 public interface SMMAPIStrategyFactory {
 

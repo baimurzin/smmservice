@@ -1,8 +1,8 @@
 package com.smm.service;
 
 import com.smm.model.Order;
-import com.smm.model.OrderDetail;
-import com.smm.model.PaymentDetail;
+import com.smm.model.other.OrderDetail;
+import com.smm.model.other.PaymentDetail;
 
 public interface OrderService {
 
