@@ -1,9 +1,8 @@
 package com.smm;
 
 import com.smm.configuration.AppConfig;
-import com.smm.model.Order;
 import com.smm.model.other.PaymentDetail;
-import com.smm.model.emun.PaymentType;
+import com.smm.model.enums.PaymentType;
 import com.smm.service.OrderService;
 import com.smm.service.SmmService;
 import org.junit.Rule;

@@ -1,4 +1,4 @@
-package com.smm.model.emun;
+package com.smm.model.enums;
 
 public enum PaymentType {
     ROBOKASSA("robokassa"), PAYPAL("paypal");

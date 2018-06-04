@@ -2,7 +2,7 @@ package com.smm.mapper;
 
 import com.smm.model.User;
 import com.smm.model.dto.UserDTO;
-import com.smm.model.emun.RoleType;
+import com.smm.model.enums.RoleType;
 import com.smm.tools.HelperUtil;
 
 

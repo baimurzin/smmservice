@@ -1,6 +1,6 @@
 package com.smm.model;
 
-import com.smm.model.emun.RoleType;
+import com.smm.model.enums.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

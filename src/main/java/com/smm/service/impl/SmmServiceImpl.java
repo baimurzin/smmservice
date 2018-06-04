@@ -1,7 +1,7 @@
 package com.smm.service.impl;
 
 import com.smm.model.Order;
-import com.smm.model.emun.SMMAPIType;
+import com.smm.model.enums.SMMAPIType;
 import com.smm.service.SmmService;
 import com.smm.vendor.smm.SMMAPIStrategy;
 import com.smm.vendor.smm.SMMAPIStrategyFactory;

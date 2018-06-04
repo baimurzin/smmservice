@@ -1,4 +1,4 @@
-package com.smm.model.emun;
+package com.smm.model.enums;
 
 public enum  SMMAPIType {
     SMMLABA("smmlaba");
