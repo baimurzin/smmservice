@@ -46,7 +46,7 @@ public class Order {
     @SequenceGenerator(name = "InvIdSequence", sequenceName = "inv_id_seq", allocationSize = 1, initialValue = 5000)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "InvIdSequence")
     @Column(name = "inv_id")
-    private Long invId;
+    private Long invId;//todo no works, generator
 
     @Column(name = "description")
     private String desc;
