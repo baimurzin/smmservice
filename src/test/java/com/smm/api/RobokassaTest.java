@@ -25,9 +25,6 @@ public class RobokassaTest {
     private final static Logger LOGGER = LoggerFactory.getLogger(RobokassaTest.class);
 
     @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
     private PayStrategyFactory payStrategyFactory;
 
     @Test
@@ -40,6 +37,5 @@ public class RobokassaTest {
         order.setInvId(1L);
         String pay = (String) paymentStrategy.pay(order);
         LOGGER.info(pay);
-        orderRepository.save(order);
     }
 }
