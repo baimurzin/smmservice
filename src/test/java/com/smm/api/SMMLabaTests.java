@@ -7,6 +7,10 @@ import com.smm.vendor.smm.SMMAPIStrategy;
 import com.smm.vendor.smm.SMMAPIStrategyFactory;
 import com.smm.vendor.smm.impl.smmlaba.APIResponse;
 import com.smm.vendor.smm.impl.smmlaba.APIResponseMessageList;
+import com.smm.vendor.smm.impl.smmlaba.messages.APIMEssageBalance;
+import com.smm.vendor.smm.impl.smmlaba.messages.APIMessageServices;
+import com.smm.vendor.smm.impl.smmlaba.messages.APIMessageStatus;
+import com.smm.vendor.smm.impl.smmlaba.messages.APIMessageTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +20,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashMap;
+
+import static org.hamcrest.Matchers.instanceOf;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -36,22 +43,32 @@ public class SMMLabaTests {
     @Test
     public void smmlabaAPIshouldWorksTest() {
         HashMap<String, String> params = new HashMap<>();
-        APIResponse result = smmapiStrategy.isActive(params);
+        APIResponse<APIMessageTest> result = smmapiStrategy.isActive(params);
+        assertEquals("ok",result.getMessage().getTest());
     }
 
     @Test
     public void testSmmlabaAPIBalance() {
         HashMap<String, String> params = new HashMap<>();
-        APIResponse result = smmapiStrategy.getBalance(params);
+        APIResponse<APIMEssageBalance> result = smmapiStrategy.getBalance(params);
+        assertThat(Double.parseDouble(result.getMessage().getBalance()), instanceOf(Double.class));
     }
 
     @Test
     public void testSmmlabaAPIServices() {
-        APIResponseMessageList result = smmapiStrategy.getServices();
+        APIResponseMessageList<APIMessageServices> result = smmapiStrategy.getServices();
+        assertNotNull(result.getMessage());
     }
 
     @Test
     public void testSmmlabaAPIService() {
-        APIResponseMessageList result = smmapiStrategy.getService("askfm");
+        APIResponseMessageList<APIMessageServices> result = smmapiStrategy.getService("askfm");
+        assertNotNull(result.getMessage());
+    }
+
+    @Test
+    public void testSmmlabaAPIGetOrderStatus() {
+        APIResponse<APIMessageStatus> result = smmapiStrategy.getOrderStatus(3537093L);
+        assertNotNull(result.getMessage());
     }
 }
