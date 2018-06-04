@@ -2,7 +2,7 @@ package com.smm.api;
 
 
 import com.smm.configuration.AppConfig;
-import com.smm.model.SMMAPIType;
+import com.smm.model.enums.SMMAPIType;
 import com.smm.vendor.smm.SMMAPIStrategy;
 import com.smm.vendor.smm.SMMAPIStrategyFactory;
 import com.smm.vendor.smm.impl.smmlaba.APIResponse;
