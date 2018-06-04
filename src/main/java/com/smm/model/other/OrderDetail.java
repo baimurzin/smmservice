@@ -1,4 +1,4 @@
-package com.smm.model;
+package com.smm.model.other;
 
 public class OrderDetail {
 }

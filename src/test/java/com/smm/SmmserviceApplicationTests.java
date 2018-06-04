@@ -1,14 +1,10 @@
 package com.smm;
 
 import com.smm.configuration.AppConfig;
-import com.smm.model.Order;
-import com.smm.model.PaymentDetail;
-import com.smm.model.PaymentType;
+import com.smm.model.other.PaymentDetail;
+import com.smm.model.enums.PaymentType;
 import com.smm.service.OrderService;
 import com.smm.service.SmmService;
-import com.smm.vendor.payment.PayStrategy;
-import com.smm.vendor.payment.PayStrategyFactory;
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -55,9 +51,5 @@ public class SmmserviceApplicationTests {
 		orderService.checkoutOrder(paymentDetail);
 	}
 
-	@Test
-	public void testSmmLabaAPIProvider() {
-		smmService.addOrder(new Order());
-	}
 
 }

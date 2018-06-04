@@ -1,12 +1,12 @@
-package com.smm.model;
+package com.smm.model.enums;
 
-public enum  SMMAPIType {
-    SMMLABA("smmlaba");
+public enum PaymentType {
+    ROBOKASSA("robokassa"), PAYPAL("paypal");
 
     private final String value;
 
-    SMMAPIType(String value) {
-        this.value = value;
+    PaymentType(String paymentProvider) {
+        this.value = paymentProvider;
     }
 
     public String getValue() {
