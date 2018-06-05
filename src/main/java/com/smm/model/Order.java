@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GeneratorType;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -43,10 +45,11 @@ public class Order {
     @Column(name = "order_sum")
     private BigDecimal orderSum;
 
-    @SequenceGenerator(name = "InvIdSequence", sequenceName = "inv_id_seq", allocationSize = 1, initialValue = 5000)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "InvIdSequence")
-    @Column(name = "inv_id")
-    private Long invId;//todo no works, generator
+    @Generated(value = GenerationTime.ALWAYS)
+    @SequenceGenerator(name = "inv_seq", sequenceName = "inv_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inv_seq")
+    @Column(name = "inv_id", unique = true)
+    private Integer invId;
 
     @Column(name = "description")
     private String desc;

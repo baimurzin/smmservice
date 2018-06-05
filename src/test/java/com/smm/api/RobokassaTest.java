@@ -6,6 +6,7 @@ import com.smm.model.enums.PaymentType;
 import com.smm.repository.OrderRepository;
 import com.smm.vendor.payment.PayStrategy;
 import com.smm.vendor.payment.PayStrategyFactory;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -17,12 +18,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 
+import static org.junit.Assert.assertNotNull;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = AppConfig.class)
 public class RobokassaTest {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(RobokassaTest.class);
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Autowired
     private PayStrategyFactory payStrategyFactory;
@@ -34,7 +40,8 @@ public class RobokassaTest {
         order.setDesc("Test");
         order.setEmail("baimurzin.719@gmail.com");
         order.setOrderSum(new BigDecimal(30.50));
-        order.setInvId(1L);
+        order = orderRepository.save(order);
+        assertNotNull(order.getInvId());
         String pay = (String) paymentStrategy.pay(order);
         LOGGER.info(pay);
     }

@@ -10,7 +10,9 @@
             <column name="order_sum" type="numeric"/>
         </addColumn>
         <addColumn tableName="orders">
-            <column name="inv_id" type="numeric"/>
+            <column autoIncrement="true" name="inv_id" type="SERIAL">
+                <constraints unique="true"/>
+            </column>
         </addColumn>
         <addColumn tableName="orders">
             <column name="description" type="varchar(1000)"/>
@@ -24,5 +26,10 @@
         <addColumn tableName="orders">
             <column name="culture" type="varchar(20)"/>
         </addColumn>
+        <createSequence
+                        incrementBy="1"
+                        schemaName="public"
+                        sequenceName="inv_seq"
+                        startValue="5500"/>
     </changeSet>
 </databaseChangeLog>
