@@ -1,6 +1,5 @@
 package com.smm.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,15 +7,16 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
 
-@Builder
+
 @Entity
+@Table(name = "param")
 @Data
-@Table(name = "service")
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Service {
+public class Param {
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -25,14 +25,16 @@ public class Service {
     )
     private String id;
 
+    @Column(name = "param_name")
+    private String paramName;
     @Column(name = "name")
     private String name;
+    @Column(name = "validation_rule")
+    private String validationRule;
+    @Column(name = "required")
+    private Integer required;
 
     @ManyToOne
-    @JoinColumn(name="service_group_id")
-    private ServiceGroup serviceGroup;
-
-
-    @OneToMany(mappedBy="service")
-    private List<ServiceProduct> serviceProducts;
+    @JoinColumn(name = "service_product_id")
+    private ServiceProduct serviceProduct;
 }

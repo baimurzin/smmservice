@@ -8,7 +8,7 @@
 
 
 
-    <changeSet id="1" author="titov">
+    <changeSet id="20180604_231301" author="titov">
 
         <preConditions onError="MARK_RAN" onFail="MARK_RAN">
             <not>
@@ -30,7 +30,7 @@
     </changeSet>
 
 
-    <changeSet id="2" author="titov">
+    <changeSet id="20180604_231302" author="titov">
         <preConditions onError="MARK_RAN" onFail="MARK_RAN">
             <not>
                 <tableExists tableName="user_detail"/>
@@ -52,7 +52,7 @@
                                  referencedTableName="users"/>
     </changeSet>
 
-    <changeSet id="3" author="titov">
+    <changeSet id="20180604_231303" author="titov">
         <preConditions onError="MARK_RAN" onFail="MARK_RAN">
             <not>
                 <tableExists tableName="service_group"/>
@@ -67,7 +67,7 @@
 
     </changeSet>
 
-    <changeSet id="4" author="titov">
+    <changeSet id="20180604_231304" author="titov">
         <preConditions onError="MARK_RAN" onFail="MARK_RAN">
             <not>
                 <tableExists tableName="service"/>
@@ -89,7 +89,7 @@
     </changeSet>
 
 
-    <changeSet id="5" author="titov">
+    <changeSet id="20180604_231305" author="titov">
         <preConditions onError="MARK_RAN" onFail="MARK_RAN">
             <not>
                 <tableExists tableName="service_product"/>
@@ -110,7 +110,7 @@
     </changeSet>
 
 
-    <changeSet id="6" author="titov">
+    <changeSet id="20180604_231306" author="titov">
         <preConditions onError="MARK_RAN" onFail="MARK_RAN">
             <not>
                 <tableExists tableName="bonus"/>
@@ -131,7 +131,7 @@
 
     </changeSet>
 
-    <changeSet id="7" author="titov">
+    <changeSet id="20180604_231307" author="titov">
         <preConditions onError="MARK_RAN" onFail="MARK_RAN">
             <not>
                 <tableExists tableName="orders"/>
@@ -152,7 +152,7 @@
 
     </changeSet>
 
-    <changeSet id="8" author="titov">
+    <changeSet id="20180604_231308" author="titov">
         <preConditions onError="MARK_RAN" onFail="MARK_RAN">
             <not>
                 <tableExists tableName="transaction"/>
@@ -175,7 +175,7 @@
     </changeSet>
 
 
-    <changeSet id="9" author="titov">
+    <changeSet id="20180604_231309" author="titov">
         <preConditions onError="MARK_RAN" onFail="MARK_RAN">
             <not>
                 <tableExists tableName="payment_vendor"/>
@@ -190,7 +190,7 @@
 
     </changeSet>
 
-    <changeSet id="10" author="titov">
+    <changeSet id="20180604_231310" author="titov">
         <preConditions onError="MARK_RAN" onFail="MARK_RAN">
             <not>
                 <tableExists tableName="transaction_payment_vendor"/>

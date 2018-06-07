@@ -26,6 +26,15 @@ public class ServiceProduct {
     )
     private String id;
 
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "price")
+    private String price;
+
+    @Column(name = "api_service_id")
+    private String apiServiceId;
+
     @ManyToOne
     @JoinColumn(name="service_id")
     private Service service;
@@ -35,4 +44,7 @@ public class ServiceProduct {
 
     @OneToMany(mappedBy="serviceProduct")
     private List<Order> orders;
+
+    @OneToMany(mappedBy="serviceProduct")
+    private List<Param> params;
 }
