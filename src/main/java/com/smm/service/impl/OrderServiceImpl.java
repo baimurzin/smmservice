@@ -6,15 +6,15 @@ import com.smm.model.other.PaymentDetail;
 import com.smm.service.OrderService;
 import com.smm.vendor.payment.PayStrategy;
 import com.smm.vendor.payment.PayStrategyFactory;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
-
-    @Autowired
     private PayStrategyFactory payStrategyFactory;
 
     @Override
@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
         try {
             PayStrategy paymentStrategy = payStrategyFactory.getPaymentStrategy(paymentDetail.getPaymentProvider());
             //do smth, logs
-            paymentStrategy.pay();
+//            paymentStrategy.pay();
         } catch (NoUniqueBeanDefinitionException e) {
             throw new UnsupportedOperationException(String.format("Provided payment vendor not supported %s", paymentDetail.getPaymentProvider()), e);
         }

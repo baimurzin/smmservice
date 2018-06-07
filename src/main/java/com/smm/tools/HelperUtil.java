@@ -1,5 +1,8 @@
 package com.smm.tools;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Map;
 import java.util.Random;
 
 public class HelperUtil {
@@ -28,6 +31,23 @@ public class HelperUtil {
             stringBuilder.append(c);
         }
         return stringBuilder.toString();
+    }
+
+    public static String urlEncodeUTF8(String s) {
+        if (s == null) return null;
+        try {
+            return URLEncoder.encode(s, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new UnsupportedOperationException(e);
+        }
+    }
+
+    public
+    static String urlEncodeUTF8(Map<String, ?> map) {
+        return map.entrySet().stream()
+                .map(p -> urlEncodeUTF8(p.getKey()) + "=" + urlEncodeUTF8((String) p.getValue()))
+                .reduce((p1, p2) -> p1 + "&" + p2)
+                .orElse("");
     }
 
     private static String mergePassSalt(String password, String salt) {
