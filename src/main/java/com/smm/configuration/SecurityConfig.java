@@ -31,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().accessDeniedPage("/forbidden");
 
         http.authorizeRequests().antMatchers("/download/**").hasRole("ADMIN")
+                .antMatchers("/dev/**").anonymous()
                 .antMatchers("/user/**").authenticated()
                 .antMatchers("/**").authenticated();
 

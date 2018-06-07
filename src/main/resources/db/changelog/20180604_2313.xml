@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="
+                       http://www.liquibase.org/xml/ns/dbchangelog
+                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    
+    <changeSet id="20180604_231507" author="titov">
+        <addColumn tableName="service">
+            <column name="name" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20180604_232201" author="titov">
+        <addColumn tableName="service_group">
+            <column name="name" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20180604_232501" author="titov">
+        <addColumn tableName="service_product">
+            <column name="name" type="varchar(255)"/>
+        </addColumn>
+        <addColumn tableName="service_product">
+            <column name="price" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20180606_000501" author="titov">
+        <addColumn tableName="service_product">
+            <column name="api_service_id" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20180606_000601" author="titov">
+        <preConditions onError="MARK_RAN" onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="params"/>
+            </not>
+        </preConditions>
+        <createTable tableName="param">
+            <column name="id" type="varchar(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="service_product_id" type="varchar(36)"/>
+            <column name="param_name" type="varchar(255)"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="validation_rule" type="varchar(255)"/>
+            <column name="required" type="numeric"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="param" baseColumnNames="service_product_id"
+                                 constraintName="param_service_product_id"
+                                 referencedTableName="service_product"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
