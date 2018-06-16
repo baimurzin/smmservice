@@ -45,6 +45,7 @@ public class ProductService {
         APIResponseMessageList<APIMessageServices> services = smmApiStrategy.getServices();
         //todo remove
         if (!services.getMessage().isEmpty()) {
+            paramRepository.truncateTable();
             serviceProductRepository.truncateTable();
             serviceRepository.truncateTable();
             serviceGroupRepository.truncateTable();
