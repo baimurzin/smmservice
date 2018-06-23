@@ -50,7 +50,7 @@ public class ProductService {
             serviceRepository.truncateTable();
             serviceGroupRepository.truncateTable();
         }
-        List<ServiceGroup> serviceGroups = new ArrayList<>();
+        Map<String, ServiceGroup> serviceGroups = new HashMap<>();
         List<Service> resultServices = new ArrayList<>();
         List<ServiceProduct> serviceProducts = new ArrayList<>();
         List<Param> params = new ArrayList<>();
@@ -95,10 +95,12 @@ public class ProductService {
                     .name(capitalize(serviceGroupName))
                     .build();
 
+            serviceGroups.putIfAbsent(sg.getName(), sg);
+
 
             Service service = Service.builder()
                     .name(capitalize(serviceName))
-                    .serviceGroup(sg)
+                    .serviceGroup(serviceGroups.get(sg.getName()))
                     .build();
 
 
@@ -110,14 +112,14 @@ public class ProductService {
                     .build();
 
             tmpParams.forEach(p -> p.setServiceProduct(serviceProduct));
-            serviceGroups.add(sg);
+
             resultServices.add(service);
             params.addAll(tmpParams);
             serviceProducts.add(serviceProduct);
 
 
         }
-        serviceGroupRepository.saveAll(serviceGroups);
+        serviceGroupRepository.saveAll(serviceGroups.values());
         serviceRepository.saveAll(resultServices);
         serviceProductRepository.saveAll(serviceProducts);
         paramRepository.saveAll(params);
